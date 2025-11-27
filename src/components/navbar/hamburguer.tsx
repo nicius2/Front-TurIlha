@@ -34,7 +34,7 @@ export function Hamburger() {
     };
 
     return (
-        <div>
+        <div className="md:hidden">
             {/* Botão Hamburguer */}
             <Button onClick={() => setOpen(!open)}>
                 <Menu />
