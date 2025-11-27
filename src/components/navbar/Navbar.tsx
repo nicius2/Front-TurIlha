@@ -1,6 +1,6 @@
 import logo from "@/assets/Logo.svg"
 import { Button } from "../ui/button"
-import { menuList } from "./list-menu"
+import { menuList } from "./menu-list"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Hamburger } from "./hamburguer"
 
