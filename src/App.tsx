@@ -1,7 +1,10 @@
+import { RouterProvider } from "react-router-dom"
+import { route } from "./routes"
+
 export function App() {
   return (
-    <div>
-      PAGINA DA ILHA
-    </div>
+    <>
+      <RouterProvider router={route} />
+    </>
   )
 }
