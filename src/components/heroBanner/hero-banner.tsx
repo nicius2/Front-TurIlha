@@ -59,7 +59,6 @@ export function HeroBanner() {
                                 />
                             </span>
                         </h1>
-
                     </div>
                 </div>
 

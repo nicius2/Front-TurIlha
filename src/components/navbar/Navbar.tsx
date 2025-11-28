@@ -31,7 +31,8 @@ export function Navbar() {
                 <Button className="hidden md:flex hover:bg-primary/80 
                 font-semibold
                 ">Fazer login</Button>
+
             </div>
-        </div>
+        </div >
     )
 }
