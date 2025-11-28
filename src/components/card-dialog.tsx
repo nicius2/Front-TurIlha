@@ -1,5 +1,3 @@
-"use client"
-
 import {
     Dialog,
     DialogContent,
@@ -16,16 +14,12 @@ export function CardDialog() {
             </DialogTrigger>
 
             <DialogContent className="border-none p-0 bg-transparent shadow-none">
-                {/* Card principal */}
                 <div className="w-full max-w-lg mx-auto relative">
 
-                    {/* Glow verde atrás */}
                     <div className="absolute -bottom-7 left-0 right-0 mx-auto w-[90%] h-20 bg-lime-400 rounded-3xl blur-lg"></div>
 
-                    {/* Card preto */}
                     <div className="relative bg-neutral-900 text-white rounded-3xl p-8 shadow-2xl">
 
-                        {/* Status */}
                         <div className="flex justify-between opacity-70 text-sm">
                             <span className="flex items-center gap-2">
                                 <span className="w-2 h-2 bg-green-500 rounded-full"></span>
@@ -35,11 +29,9 @@ export function CardDialog() {
                             <span>8:30 PM</span>
                         </div>
 
-                        {/* Perfil */}
+
                         <div className="flex items-center mt-6 gap-4">
-                            {/* <Avatar className="w-14 h-14">
-                                <AvatarImage src="https://i.pravatar.cc/100" />
-                            </Avatar> */}
+
 
                             <div>
                                 <h2 className="text-xl font-semibold">Seu Nome Aqui</h2>
