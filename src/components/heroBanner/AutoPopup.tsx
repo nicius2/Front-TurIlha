@@ -23,12 +23,10 @@ export function AutoPopup() {
         <AnimatePresence>
             {show && (
                 <motion.div
-                    className="fixed z-[999] pointer-events-none "
+                    className="absolute z-40 pointer-events-none left-1/2 -translate-x-1/2"
                     style={{
-                        top: "400px",      // <<< POSIÇÃO FIXA (ajuste como quiser)
-                        left: "25%",
-                        right: "25%",
-                        transform: "translateX(-50%)",
+                        top: "40%",                   // fica no meio vertical
+                        transform: "translate(-50%, -50%)", // centra total
                     }}
                     initial={{ opacity: 0, scale: 0.7, filter: "blur(8px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
@@ -40,11 +38,11 @@ export function AutoPopup() {
                         damping: 14,
                     }}
                 >
-                    {/* Tiramos a margin do Activities usando wrapper */}
                     <div className="mt-0">
                         <Activities />
                     </div>
                 </motion.div>
+
             )}
         </AnimatePresence>
     )
