@@ -5,6 +5,7 @@ import { menuList } from "./menu-list";
 import logo from "@/assets/Logo.svg";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Hamburger = React.memo(function Hamburger() {
     const [open, setOpen] = useState(false);
@@ -94,7 +95,9 @@ export const Hamburger = React.memo(function Hamburger() {
                                 animate={{ opacity: 1, y: 0, transition: { delay: 0.2 } }}
                                 exit={{ opacity: 0, y: 20 }}
                             >
-                                <Button className="flex justify-center items-center w-full my-8">Fazer login</Button>
+                                <Button asChild className="flex justify-center items-center w-full my-8">
+                                    <Link to="/auth">Fazer login</Link>
+                                </Button>
                             </motion.div>
                         </motion.div>
                     </>

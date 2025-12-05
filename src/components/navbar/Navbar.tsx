@@ -3,6 +3,7 @@ import logo from "@/assets/Logo.svg";
 import { Button } from "../ui/button";
 import { menuList } from "./menu-list";
 import { Hamburger } from "./hamburguer";
+import { Link } from "react-router-dom";
 
 export const Navbar = memo(function Navbar() {
     return (
@@ -29,8 +30,10 @@ export const Navbar = memo(function Navbar() {
                     ))}
                 </div>
 
-                <Button className="hidden md:flex hover:bg-primary/80 font-semibold">
+                <Button asChild className="hidden md:flex hover:bg-primary/80 font-semibold">
+                <Link to="/auth">
                     Fazer login
+                </Link>
                 </Button>
             </div>
         </nav >

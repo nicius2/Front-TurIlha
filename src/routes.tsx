@@ -1,9 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import { HomePage } from "./pages/homePage/home-page";
-import { Paisagens } from "./pages/paisagens";
-import { Atividades } from "./pages/atividades";
-import { Eventos } from "./pages/eventos";
+import { HomePage } from "./pages/app/homePage/home-page";
+import { Paisagens } from "./pages/app/paisagens";
+import { Atividades } from "./pages/app/atividades";
+import { Eventos } from "./pages/app/eventos";
 import { NotFound } from "./pages/NotFound";
+import { AuthSignLayout } from "./_layout/AuthSignLayout";
+import { Sign } from "@/pages/auth/sign"
 
 export const route = createBrowserRouter([
   {
@@ -28,8 +30,18 @@ export const route = createBrowserRouter([
       },
     ]
   },
-    {
+  {
+    path: "/",
+    element: <AuthSignLayout />,
+    children: [
+      {
+        path: "sign", 
+        element: <Sign />
+      }
+    ]
+  },
+  {
     path: "*",
     element: <NotFound />
-    }
+  }
 ]);
