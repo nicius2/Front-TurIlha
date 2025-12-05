@@ -21,7 +21,7 @@ export function CardDialog() {
                     <div className="relative bg-neutral-900 text-white rounded-3xl p-8 shadow-2xl">
 
                         <div className="flex justify-between opacity-70 text-sm">
-                            <span className="flex items-center gap-2">
+                           <span className="flex items-center gap-2">
                                 <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                                 Disponível agora
                             </span>

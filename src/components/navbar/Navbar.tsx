@@ -13,7 +13,7 @@ export const Navbar = memo(function Navbar() {
                     src={logo}
                     alt="logo do site"
                     className="md:w-auto w-16"
-                    loading="eager"
+                    loading="lazy" // Alterado para lazy loading
                     decoding="async"
                 />
 
