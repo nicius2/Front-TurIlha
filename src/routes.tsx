@@ -3,6 +3,7 @@ import { HomePage } from "./pages/homePage/home-page";
 import { Paisagens } from "./pages/paisagens";
 import { Atividades } from "./pages/atividades";
 import { Eventos } from "./pages/eventos";
+import { NotFound } from "./pages/NotFound";
 
 export const route = createBrowserRouter([
   {
@@ -26,5 +27,9 @@ export const route = createBrowserRouter([
         element: <Eventos />
       },
     ]
-  }
+  },
+    {
+    path: "*",
+    element: <NotFound />
+    }
 ]);
