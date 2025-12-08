@@ -4,7 +4,9 @@ import { getListCardPaisagem } from "@/api/getCardPaisagem";
 
 export function usePaisagens() {
   return useQuery({
-    queryKey: ["paisagens"],
+    queryKey: ['paisagens'],
     queryFn: getListCardPaisagem,
+    // Adicione os estados necessários
+    onError: (error) => console.error(error)
   });
 }

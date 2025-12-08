@@ -13,8 +13,8 @@ export interface CardProps {
 }
 
 export const Paisagens = React.memo(function Paisagens() {
-  // Remova ou comente esta linha se não estiver usando:
-  // const { data } = usePaisagens();
+  // Corrigir para:
+  const { data, isLoading, isError, error } = usePaisagens();
 
   // Adapta os dados da API para o formato do Card
   const cards: CardProps[] = [
@@ -30,14 +30,7 @@ export const Paisagens = React.memo(function Paisagens() {
     );
   }
 
-  if (isError) {
-    return (
-      <>
-        <Helmet title="Paisagens" />
-        <div className="text-red-500 p-4">Erro ao carregar paisagens: {error?.message || "Erro desconhecido."}</div>
-      </>
-    );
-  }
+  {isError && <div>Erro: {error.message}</div>}
 
   if (!cards.length) {
     return (

@@ -16,8 +16,6 @@ export function HomePage() {
 
                     <Navbar />
                     <HeroBanner />
-                    // Remova ou comente esta linha se não estiver usando:
-                    // import { AutoPopup } from "@/components/auto-popup";
                     <MainPlaces />
                 </div>
             </div >
