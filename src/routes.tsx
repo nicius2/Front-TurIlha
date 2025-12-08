@@ -5,7 +5,9 @@ import { Atividades } from "./pages/app/atividades";
 import { Eventos } from "./pages/app/eventos";
 import { NotFound } from "./pages/NotFound";
 import { AuthSignLayout } from "./_layout/AuthSignLayout";
-import { Sign } from "@/pages/auth/sign"
+import { SignIn } from "@/pages/auth/signIn"
+import { SignUp } from "@/pages/auth/signUp"
+
 
 export const route = createBrowserRouter([
   {
@@ -35,9 +37,13 @@ export const route = createBrowserRouter([
     element: <AuthSignLayout />,
     children: [
       {
-        path: "sign", 
-        element: <Sign />
-      }
+        path: "login", 
+        element: <SignIn />
+      },
+      {
+        path: "cadastrar", 
+        element: <SignUp />
+      },
     ]
   },
   {

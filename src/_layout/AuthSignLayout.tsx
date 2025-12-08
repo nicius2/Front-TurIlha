@@ -16,8 +16,8 @@ export function AuthSignLayout() {
                 }}
             >
                 <div
-                    className="w-[350px] md:w-[400px] h-[540px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-                    bg-amber-50 rounded-3xl p-10 flex flex-col md:left-7/12 md:-translate-x-7"
+                    className="w-[350px] md:w-[450px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                    bg-white rounded-3xl p-10 flex flex-col md:left-7/12 md:-translate-x-7"
                 >
                     <Outlet />
                 </div>

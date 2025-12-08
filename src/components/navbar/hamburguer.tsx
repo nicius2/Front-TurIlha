@@ -96,7 +96,7 @@ export const Hamburger = React.memo(function Hamburger() {
                                 exit={{ opacity: 0, y: 20 }}
                             >
                                 <Button asChild className="flex justify-center items-center w-full my-8">
-                                    <Link to="/auth">Fazer login</Link>
+                                    <Link to="/login">Fazer login</Link>
                                 </Button>
                             </motion.div>
                         </motion.div>

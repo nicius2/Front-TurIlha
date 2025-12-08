@@ -17,7 +17,7 @@ export function HomePage() {
 
                     <Navbar />
                     <HeroBanner />
-                    <AutoPopup />
+                    {/* <AutoPopup /> */}
                     <MainPlaces />
                 </div>
             </div >

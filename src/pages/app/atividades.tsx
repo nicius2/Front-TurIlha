@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getListCardAtividades } from "@/api/getCardAtividades";
 import React from "react";
+import { Helmet } from "react-helmet-async";
 
 export const Atividades = React.memo(function Atividades() {
   const { data, isLoading, isError, error } = useQuery({
@@ -16,14 +17,17 @@ export const Atividades = React.memo(function Atividades() {
   }
 
   return (
-    <div>
-      <h1>Atividades</h1>
-      {data.map((atividades) => (
-        <div key={atividades.id}>
-          <h3>{atividades.name}</h3>
-          <img src={atividades.image} alt={`Imagem da atividade: ${atividades.name}`} loading="lazy" />
-        </div>
-      ))}
-    </div>
+    <>
+      <Helmet title="Atividades" />
+      <div>
+        <h1>Atividades</h1>
+        {data.map((atividades) => (
+          <div key={atividades.id}>
+            <h3>{atividades.name}</h3>
+            <img src={atividades.image} alt={`Imagem da atividade: ${atividades.name}`} loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </>
   );
 });

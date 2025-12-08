@@ -70,5 +70,13 @@
       "image": "https://images.unsplash.com/photo-1511379938547-c1f69419868d",
       "description": "O lendário Guns N' Roses retorna ao Brasil com show exclusivo na ilha em 2026, prometendo uma noite histórica para os fãs."
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Vinicius Campos",
+      "email": "vinicius.campos@example.com",
+      "password": "123456"
+    }
   ]
 }

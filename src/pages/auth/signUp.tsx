@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import { Label } from "@radix-ui/react-label";
 import iconMao from "@/assets/icon-mao.svg";
-import { Eye, Mail, EyeOff } from "lucide-react";
+import { Eye, Mail, EyeOff, User } from "lucide-react";
 import { useState } from "react";
 
 import iconGoogle from "@/assets/google.png";
@@ -14,30 +14,35 @@ import { Button } from "@/components/ui/button";
 
 const formSchema = z.object({
     email: z.string().email("Email inválido"),
+    nome: z.string().min(2, "O nome deve ter no mínimo 2 caracteres"),
     password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
+    confirmPassword: z.string().min(6, "A confirmação de senha deve ter no mínimo 6 caracteres"),
+}).refine((data) => data.password === data.confirmPassword, {
+    message: "As senhas não coincidem",
+    path: ["confirmPassword"], // Posição do erro no formulário
 });
 
 type FormData = z.infer<typeof formSchema>;
 
-export function Sign() {
+export function SignUp() {
     const [eyesopen, setEyesopen] = useState(false);
 
-    const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<FormData>({
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
         resolver: zodResolver(formSchema),
     });
 
-    function handleLogin(data: FormData) {
+    function handleSignUp(data: FormData) {
         console.log(data); // Exibe os dados no console
     }
 
     return (
         <>
-            <Helmet title="sign" />
+            <Helmet title="Sign Up" />
 
-            <div className="flex flex-col items-center w-full py-10 h-full">
+            <div className="flex flex-col items-center w-full py-4 h-full">
                 <div className="flex gap-2 items-center mb-8">
                     <h1 className="text-3xl font-semibold ">
-                        Bem-Vindo
+                        Crie sua conta
                     </h1>
                     <span>
                         <img src={iconMao}
@@ -46,8 +51,25 @@ export function Sign() {
                     </span>
                 </div>
 
-                <div className="space-y-6">
-                    <form onSubmit={handleSubmit(handleLogin)} className="space-y-6 w-[300px]">
+                <div className="space-y-4">
+                    <form onSubmit={handleSubmit(handleSignUp)} className="space-y-4 w-[300px]">
+                        <div className="relative">
+                            <Label htmlFor="nome" className="block text-sm font-medium text-gray-700">
+                                Nome
+                            </Label>
+                            <div className="relative mt-1">
+                                <Input
+                                    id="nome"
+                                    {...register("nome")}
+                                    type="text"
+                                    placeholder="Nome"
+                                    className="w-full h-12 px-4 py-3 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500"
+                                />
+                                <User className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                            </div>
+                            {errors.nome && <p className="text-sm text-red-500 mt-1">{errors.nome.message}</p>}
+                        </div>
+
                         <div className="relative">
                             <Label htmlFor="email" className="block text-sm font-medium text-gray-700">
                                 Email
@@ -55,13 +77,14 @@ export function Sign() {
                             <div className="relative mt-1">
                                 <Input
                                     id="email"
-                                    {...register("email")} // Registro do campo
+                                    {...register("email")}
                                     type="email"
                                     placeholder="Email"
                                     className="w-full h-12 px-4 py-3 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500"
                                 />
                                 <Mail className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                             </div>
+                            {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>}
                         </div>
 
                         <div className="relative">
@@ -71,7 +94,7 @@ export function Sign() {
                             <div className="relative mt-1">
                                 <Input
                                     id="password"
-                                    {...register("password")} // Registro do campo
+                                    {...register("password")}
                                     type={eyesopen ? "text" : "password"}
                                     placeholder="Senha"
                                     className="w-full h-12 px-4 py-3 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500"
@@ -84,17 +107,30 @@ export function Sign() {
                                     {eyesopen ? <Eye className="text-amber-500" /> : <EyeOff />}
                                 </button>
                             </div>
+                            {errors.password && <p className="text-sm text-red-500 mt-1">{errors.password.message}</p>}
+                        </div>
 
-                            <span className="text-sm md:text-xs text-amber-500 cursor-pointer hover:text-amber-500/80 float-right mt-2 mb-6 ">
-                                Esqueceu a Senha?
-                            </span>
+                        <div className="relative">
+                            <Label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+                                Confirmar Senha
+                            </Label>
+                            <div className="relative mt-1">
+                                <Input
+                                    id="confirmPassword"
+                                    {...register("confirmPassword")}
+                                    type="password"
+                                    placeholder="Confirme sua senha"
+                                    className="w-full h-12 px-4 py-3 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500"
+                                />
+                            </div>
+                            {errors.confirmPassword && <p className="text-sm text-red-500 mt-1">{errors.confirmPassword.message}</p>}
                         </div>
 
                         <Button
                             type="submit"
-                            className="w-full h-12 px-4 py-3 font-bold text-white bg-amber-500 rounded-md shadow-sm hover:bg-amber-500/90 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+                            className="w-full h-12 px-4 py-3 mt-4 font-bold text-white bg-amber-500 rounded-md shadow-sm hover:bg-amber-500/90 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
                         >
-                            Entrar
+                            Cadastrar
                         </Button>
                     </form>
                     <div className="flex justify-center mt-4">
