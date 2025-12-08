@@ -19,15 +19,15 @@ export const route = createBrowserRouter([
         element: <Paisagens />
       },
       {
-        path: "/paisagens",
+        path: "paisagens",
         element: <Paisagens />
       },
       {
-        path: "/atividades",
+        path: "atividades",
         element: <Atividades />
       },
       {
-        path: "/eventos",
+        path: "eventos",
         element: <Eventos />
       },
     ]
@@ -37,7 +37,7 @@ export const route = createBrowserRouter([
     element: <AuthSignLayout />,
     children: [
       { path: "login", element: <SignIn /> },
-      { path: "cadastrar", element: <SignUp /> },
+      { path: "register", element: <SignUp /> },
     ]
   },
   {
