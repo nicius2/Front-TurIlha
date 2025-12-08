@@ -6,7 +6,6 @@ export function usePaisagens() {
   return useQuery({
     queryKey: ['paisagens'],
     queryFn: getListCardPaisagem,
-    // Adicione os estados necessários
-    onError: (error) => console.error(error)
+    
   });
 }

@@ -14,7 +14,7 @@ export interface CardProps {
 
 export const Paisagens = React.memo(function Paisagens() {
   // Corrigir para:
-  const { data, isLoading, isError, error } = usePaisagens();
+  const { isLoading, isError, error } = usePaisagens();
 
   // Adapta os dados da API para o formato do Card
   const cards: CardProps[] = [
