@@ -1,0 +1,82 @@
+{
+  "paisagens": [
+    {
+      "id": 1,
+      "name": "Lagoa da Jansen",
+      "image": "https://images.unsplash.com/photo-1526779259212-939e64788e3c",
+      "description": "A Lagoa da Jansen é um dos principais cartões postais da cidade, especialmente ao pôr do sol."
+    },
+    {
+      "id": 2,
+      "name": "Ponta do Espigão",
+      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+      "description": "Pier moderno com vista ampla para o oceano e ideal para caminhadas ao entardecer."
+    },
+    {
+      "id": 3,
+      "name": "Praia do Calhau",
+      "image": "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
+      "description": "Praia extensa com ondas fortes, ponto turístico muito movimentado."
+    }
+  ],
+  "atividades": [
+    {
+      "id": 1,
+      "name": "Passeio de Catamarã",
+      "image": "https://images.unsplash.com/photo-1501776192759-680c38b10803",
+      "description": "Passeio relaxante pelo litoral com vista privilegiada do pôr do sol."
+    },
+    {
+      "id": 2,
+      "name": "Trilha Ecológica no Parque Estadual",
+      "image": "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+      "description": "Contato direto com a natureza, trilhas leves e mirantes naturais."
+    },
+    {
+      "id": 3,
+      "name": "City Tour pelo Centro Histórico",
+      "image": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb",
+      "description": "Caminhada entre casarões coloniais e ruas de pedra cheias de história."
+    }
+  ],
+  "eventos": [
+    {
+      "id": 1,
+      "name": "Carnaval da Ilha",
+      "image": "https://images.unsplash.com/photo-1501459906900-0a3b3aee4c1d",
+      "description": "Um dos maiores carnavais culturais do Brasil, com blocos, trios, maracatu e grandes shows na orla."
+    },
+    {
+      "id": 2,
+      "name": "São João do Maranhão",
+      "image": "https://images.unsplash.com/photo-1526129318478-62ed807ebdfb",
+      "description": "Festa tradicional repleta de quadrilhas, bois, comidas típicas e apresentações culturais únicas."
+    },
+    {
+      "id": 3,
+      "name": "Feira do Livro de São Luís (FELIS)",
+      "image": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f",
+      "description": "Evento literário que reúne autores, palestras, oficinas e atividades culturais."
+    },
+    {
+      "id": 4,
+      "name": "Réveillon da Avenida Litorânea",
+      "image": "https://images.unsplash.com/photo-1519081763390-532a3f2e7b0f",
+      "description": "Tradicional festa de virada com shows, queima de fogos e grande público."
+    },
+    {
+      "id": 5,
+      "name": "Show Guns N' Roses – Ilha Festival 2026",
+      "image": "https://images.unsplash.com/photo-1511379938547-c1f69419868d",
+      "description": "O lendário Guns N' Roses retorna ao Brasil com show exclusivo na ilha em 2026, prometendo uma noite histórica para os fãs."
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Vinicius Campos",
+      "email": "vinicius.campos@example.com",
+      "password": "123456"
+    }
+  ]
+}

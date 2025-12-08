@@ -1,6 +1,5 @@
 import { Leaf } from "lucide-react"
 
-
 export function Activities() {
     return (
         <div className="flex items-center justify-center md:mt-40 mt-30">
