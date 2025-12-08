@@ -2,7 +2,6 @@ import { HeroBanner } from "@/components/heroBanner/hero-banner";
 import { Navbar } from "@/components/navbar/Navbar";
 import { Helmet } from "react-helmet-async";
 import { MainPlaces } from "./main-places";
-import { AutoPopup } from "@/components/heroBanner/AutoPopup";
 
 export function HomePage() {
     return (
@@ -17,7 +16,8 @@ export function HomePage() {
 
                     <Navbar />
                     <HeroBanner />
-                    {/* <AutoPopup /> */}
+                    // Remova ou comente esta linha se não estiver usando:
+                    // import { AutoPopup } from "@/components/auto-popup";
                     <MainPlaces />
                 </div>
             </div >
