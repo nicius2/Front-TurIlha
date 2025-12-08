@@ -1,35 +1,63 @@
-// import { useQuery } from "@tanstack/react-query";
-// import { getListCardPaisagem } from "@/api/getCardPaisagem";
 import React from "react";
 import { Helmet } from "react-helmet-async";
+import { CardList } from "@/components/cardList";
+import { usePaisagens } from "@/hooks/usePaisagens";
 import { Card } from "@/components/card";
 
+export type CardType = "paisagens" | "atividades" | "eventos";
+export interface CardProps {
+  type: CardType;
+  title: string;
+  distance: string;
+  imageUrl: string;
+}
+
 export const Paisagens = React.memo(function Paisagens() {
-  // const { data, isLoading, isError, error } = useQuery({
-  //   queryKey: ['paisagem'],
-  //   queryFn: getListCardPaisagem
-  // });
+  const { data, isLoading, isError, error } = usePaisagens();
 
-  // if (isLoading) return <div>Carregando...</div>;
-  // if (isError) return <div>Erro ao carregar paisagens: {error?.message || "Erro desconhecido."}</div>;
+  // Adapta os dados da API para o formato do Card
+  const cards: CardProps[] = [
+    { type: "paisagens", title: "...", distance: "...", imageUrl: "..." },
+  ];
 
-  // if (!data || data.length === 0) {
-  //   return <div>Nenhuma paisagem encontrada.</div>;
-  // }
+  if (isLoading) {
+    return (
+      <>
+        <Helmet title="Paisagens" />
+        <CardList isLoading={true} cards={[]} />
+      </>
+    );
+  }
+
+  if (isError) {
+    return (
+      <>
+        <Helmet title="Paisagens" />
+        <div className="text-red-500 p-4">Erro ao carregar paisagens: {error?.message || "Erro desconhecido."}</div>
+      </>
+    );
+  }
+
+  if (!cards.length) {
+    return (
+      <>
+        <Helmet title="Paisagens" />
+        <div className="p-4">Nenhuma paisagem encontrada.</div>
+      </>
+    );
+  }
 
   return (
     <>
       <Helmet title="Paisagens" />
-      <div>
-        <Card type="paisagens" />
-        {/* <h1>Paisagens</h1>
-        {data.map((paisagem) => (
-          <div key={paisagem.id}>
-            <h3>{paisagem.name}</h3>
-            <img src={paisagem.image} alt={`Imagem da paisagem: ${paisagem.name}`} loading="lazy" />
-          </div>
-        ))} */}
-      </div>
+      <CardList isLoading={false} cards={cards as CardProps[]} />
+      {cards.map(card => (
+        <Card
+          key={card.title}
+          title={card.title}
+          distance={card.distance}
+          imageUrl={card.imageUrl} type={"paisagens"}        />
+      ))}
     </>
   );
 });

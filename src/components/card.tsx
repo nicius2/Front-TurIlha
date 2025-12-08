@@ -1,16 +1,17 @@
 import carIcon from "@/assets/car.svg";
 import imgCard from "@/assets/image-card.svg";
+import { ArrowRight } from "lucide-react";
 
 type CardType = "paisagens" | "atividades" | "eventos";
 
-interface CardProps {
+export interface CardProps {
   type: CardType;
-  title: string; // Título do card
-  distance: string; // Distância (ex: "2KM")
-  imageUrl?: string; // URL da imagem (opcional)
+  title: string; 
+  distance: string; 
+  imageUrl?: string; 
 }
 
-export function Card({ type, title, distance, imageUrl }: CardProps) {
+export function Card({ title, distance, imageUrl }: CardProps) {
   return (
     <div className="flex flex-col w-full max-w-[200px] bg-gray-100 rounded-3xl shadow-lg overflow-hidden">
       {/* Imagem do Card */}
@@ -24,9 +25,9 @@ export function Card({ type, title, distance, imageUrl }: CardProps) {
 
       {/* Conteúdo do Card */}
       <div className="p-4">
-        <h2 className="text-xl font-bold text-gray-800">Centro historico</h2>
+        <h2 className="text-xl font-bold text-gray-800">{title}</h2>
         <span className="text-sm font-semibold text-gray-600 bg-green-200 px-2 border-1 rounded-2xl w-fit border-green-400  flex items-center mt-2">
-          2KM
+          {distance}
           <img
             src={carIcon}
             alt="Ícone de carro"
@@ -38,20 +39,7 @@ export function Card({ type, title, distance, imageUrl }: CardProps) {
         >
           Conhecer
           <span className="ml-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-4 h-4"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
-            </svg>
+            <ArrowRight size={24} />  
           </span>
         </button>
       </div>

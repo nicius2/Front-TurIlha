@@ -128,6 +128,7 @@ export function SignUp() {
 
                         <Button
                             type="submit"
+                            disabled={isSubmitting}
                             className="w-full h-12 px-4 py-3 mt-4 font-bold text-white bg-amber-500 rounded-md shadow-sm hover:bg-amber-500/90 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
                         >
                             Cadastrar
