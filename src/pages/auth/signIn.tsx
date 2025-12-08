@@ -59,7 +59,7 @@ export function SignIn() {
                                     id="email"
                                     {...register("email")} // Registro do campo
                                     type="email"
-                                    placeholder="Email"
+                                    placeholder="Digite seu email"
                                     className="w-full h-12 px-4 py-3 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500"
                                 />
                                 {errors.email && (
@@ -80,7 +80,7 @@ export function SignIn() {
                                     id="password"
                                     {...register("password")} // Registro do campo
                                     type={eyesopen ? "text" : "password"}
-                                    placeholder="Senha"
+                                    placeholder="Digite sua senha"
                                     className="w-full h-12 px-4 py-3 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500"
                                 />
                                 {errors.password && (
@@ -98,7 +98,7 @@ export function SignIn() {
                             </div>
 
                             <span className="text-sm md:text-xs text-amber-500 cursor-pointer hover:text-amber-500/80 float-right mt-2 mb-6 ">
-                                Esqueceu a Senha?
+                                <Link to="/auth/reset-password" className="text-amber-500 cursor-pointer hover:text-amber-500/80">Esqueceu a Senha?</Link>
                             </span>
                         </div>
 
