@@ -1,77 +1,113 @@
-import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { Button } from "../ui/button";
-
-const menuList = [
-    { id: 1, name: 'Home', link: "#" },
-    { id: 2, name: 'Sobre', link: "#" },
-    { id: 3, name: 'Principais pontos', link: "#" }
-];
+import { menuList } from "./menu-list";
+import logo from "@/assets/Logo.svg";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 
 export function Hamburger() {
     const [open, setOpen] = useState(false);
 
+    // Variantes para o menu
+    const menuVariants: Variants = {
+        hidden: { y: 0, opacity: 0 },
+        visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 120, damping: 15 } },
+        exit: { y: 0, opacity: 0, transition: { duration: 0.2 } },
+    };
+
+    // Variantes para o X
+    const closeVariants = {
+        hidden: { scale: 0, opacity: 0 },
+        visible: { scale: 1, opacity: 1, transition: { duration: 0.25 } },
+        exit: { scale: 0, opacity: 0, transition: { duration: 0.2 } },
+    };
+
+    // Variantes para os links
+    const linkVariants = {
+        hidden: { opacity: 0, y: -10 },
+        visible: (i: number) => ({
+            opacity: 1,
+            y: 0,
+            transition: { delay: 0.1 * i }
+        }),
+        exit: { opacity: 0, y: -10 },
+    };
+
     return (
-        <>
+        <div className="md:hidden">
             {/* Botão Hamburguer */}
-            <Button
-                className="md:hidden"
-                onClick={() => setOpen(true)}
-            >
-                <Menu size={28} />
+            <Button onClick={() => setOpen(!open)}>
+                <Menu />
             </Button>
 
             <AnimatePresence>
                 {open && (
                     <>
-                        {/* BACKDROP */}
+                        {/* Backdrop */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.25 }}
-                            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 md:hidden"
+                            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
                             onClick={() => setOpen(false)}
                         />
 
-                        {/* DRAWER (metade da tela) */}
+                        {/* Drawer */}
                         <motion.div
-                            initial={{ y: -300, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: -300, opacity: 0 }}
-                            transition={{ type: "spring", stiffness: 120, damping: 15 }}
-                            className="
-                                fixed left-1/2 -translate-x-1/2 top-6 z-50
-                                w-[90%] max-w-sm
-                                bg-white rounded-2xl p-6 shadow-xl
-                                md:hidden
-                            "
+                            variants={menuVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                            className="fixed left-1/2 -translate-x-1/2 top-9 z-50 w-[85%] max-w-sm bg-white 
+                            rounded-2xl px-4 pt-1 shadow-xl md:hidden flex flex-col"
                         >
-                            {/* HEADER */}
-                            <div className="flex justify-between items-center mb-6">
-                                <h1 className="text-xl font-bold">Menu</h1>
-                                <button onClick={() => setOpen(false)}>
-                                    <X size={26} />
-                                </button>
+                            {/* Header */}
+                            <div className="flex justify-between items-center mb-4">
+                                <img src={logo} alt="logo do site" className="md:w-auto w-16" />
+
+                                <motion.button
+                                    variants={closeVariants}
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="exit"
+                                    onClick={() => setOpen(false)}
+                                >
+                                    <X className="w-8 h-8 text-primary" />
+                                </motion.button>
                             </div>
 
-                            <nav className="flex flex-col gap-6">
-                                {menuList.map((item) => (
-                                    <a
-                                        key={item.id}
-                                        href={item.link}
-                                        className="text-lg font-semibold text-zinc-800"
+                            {/* Links */}
+                            <nav className="flex flex-col justify-center items-center gap-4 flex-1">
+                                {menuList.map((value, i) => (
+                                    <motion.a
+                                        key={value.id}
+                                        href={value.link}
+                                        className="text-lg font-medium text-zinc-800"
+                                        custom={i}
+                                        variants={linkVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                        exit="exit"
                                         onClick={() => setOpen(false)}
                                     >
-                                        {item.name}
-                                    </a>
+                                        {value.name}
+                                    </motion.a>
                                 ))}
                             </nav>
+
+                            {/* Botão de login */}
+                            <motion.div
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0, transition: { delay: 0.2 } }}
+                                exit={{ opacity: 0, y: 20 }}
+                            >
+                                <Button className="flex justify-center items-center w-full my-8">Fazer login</Button>
+                            </motion.div>
                         </motion.div>
                     </>
                 )}
             </AnimatePresence>
-        </>
+        </div>
     );
 }
