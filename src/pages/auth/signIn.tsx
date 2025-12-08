@@ -112,7 +112,7 @@ export function SignIn() {
                     </form>
 
                     <span className="text-sm md:text-xs flex justify-center gap-1 text-gray-500">
-                        Não tem uma conta? <Link to="/cadastrar" className="text-amber-500 cursor-pointer hover:text-amber-500/80">Cadastre-se</Link>
+                        Não tem uma conta? <Link to="/auth/register" className="text-amber-500 cursor-pointer hover:text-amber-500/80">Cadastre-se</Link>
                     </span>
 
                     <div className="flex justify-center mt-4">

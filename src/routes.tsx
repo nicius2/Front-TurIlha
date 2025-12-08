@@ -37,7 +37,7 @@ export const route = createBrowserRouter([
     element: <AuthSignLayout />,
     children: [
       { path: "login", element: <SignIn /> },
-      { path: "cadastrar", element: <SignUp /> },
+      { path: "register", element: <SignUp /> },
     ]
   },
   {
