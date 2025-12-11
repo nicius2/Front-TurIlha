@@ -2,6 +2,7 @@
 
 Descubra os melhores pontos turísticos, atividades e experiências em São Luís do Maranhão.
 O TurIlha conecta viajantes aos destinos mais incríveis da ilha com praticidade e geolocalização.
+
 <img width="1345" height="692" alt="image" src="https://github.com/user-attachments/assets/f966ad56-51db-454a-949f-b60cffbcc406" />
 
 ### 🚀 Features Principais
@@ -15,11 +16,11 @@ O TurIlha conecta viajantes aos destinos mais incríveis da ilha com praticidade
 ### 🛠️ Tecnologias Utilizadas
 #### Front-end
 
-- React, TailwindCSS, Shadcn/UI, Radix UI, React Hook Form, Zod (validação)
+- React, TailwindCSS, Shadcn/UI, Radix UI, React Hook Form, Zod (validação), React Query.
 
 #### Back-end
 
-Node.js, Express, TypeScript, JWT (autenticação), Docker / Docker Compose, PostgreSQL, Prisma ORM, bcrypt, Jest (testes automatizados)
+Node.js, Express, TypeScript, JWT (autenticação), Docker / Docker Compose, PostgreSQL, Prisma ORM, bcrypt, Jest (testes automatizados).
 
 ## 📥 Como clonar e rodar o projeto
 #### 🔧 1. Clone o repositório
