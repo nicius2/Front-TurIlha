@@ -41,7 +41,7 @@ pnpm install
 Crie um arquivo chamado .env na raiz do backend com o conteúdo:
 
 ```
-DATABASE_URL="postgresql://turilha_user:turilha_password@localhost:5432/turilha_db"
+DATABASE_URL="postgresql://username:passowrd@localhost:5432/name-db"
 JWT_SECRET="sua_chave_secreta"
 ```
 
