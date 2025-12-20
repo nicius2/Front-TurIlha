@@ -1,58 +1,53 @@
-import {
-    Dialog,
-    DialogContent,
-    DialogTrigger,
-} from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { LightbulbIcon, Mail } from "lucide-react"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import type { CardType } from "@/context/TurismContext";
+import { getAvailability } from "@/lib/getAvailability";
 
-export function CardDialog() {
-    return (
-        <Dialog>
-            <DialogTrigger asChild>
-                <Button className="rounded-sm">Abrir Card</Button>
-            </DialogTrigger>
+interface CardDialogProps {
+  title: string
+  description: string
+  imageUrl?: string
+  cardType: CardType
+}
 
-            <DialogContent className="border-none p-0 bg-transparent shadow-none">
-                <div className="w-full max-w-lg mx-auto relative">
+export function CardDialog({ title, description, imageUrl, cardType }: CardDialogProps) {
 
-                    <div className="absolute -bottom-7 left-0 right-0 mx-auto w-[90%] h-20 bg-lime-400 rounded-3xl blur-lg"></div>
+  const availability = getAvailability({cardType});
 
-                    <div className="relative bg-neutral-900 text-white rounded-3xl p-8 shadow-2xl">
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button className="mt-4 flex w-full items-center justify-center rounded-lg bg-orange-500 py-2 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">
+          Conhecer
+          <span className="ml-2">
+            <ArrowRight size={24} />
+          </span>
+        </Button>
+      </DialogTrigger>
 
-                        <div className="flex justify-between opacity-70 text-sm">
-                           <span className="flex items-center gap-2">
-                                <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                                Disponível agora
-                            </span>
-
-                            <span>8:30 PM</span>
-                        </div>
-
-
-                        <div className="flex items-center mt-6 gap-4">
-
-
-                            <div>
-                                <h2 className="text-xl font-semibold">Seu Nome Aqui</h2>
-                                <p className="text-neutral-400 text-sm">Software Engineer</p>
-                            </div>
-                        </div>
-
-                        {/* Botões */}
-                        <div className="flex gap-4 mt-6">
-                            <Button className="flex-1 bg-neutral-800 text-white rounded-xl hover:bg-neutral-700">
-                                <LightbulbIcon className="w-4 h-4 mr-2" /> Hire Me
-                            </Button>
-
-                            <Button className="flex-1 bg-neutral-800 text-white rounded-xl hover:bg-neutral-700">
-                                <Mail className="w-4 h-4 mr-2" /> Copy Email
-                            </Button>
-                        </div>
-
-                    </div>
-                </div>
-            </DialogContent>
-        </Dialog>
-    )
+      <DialogContent className="border-none p-0 bg-transparent shadow-none">
+      <div className="w-full max-w-lg mx-auto relative">
+        <div className="relative bg-neutral-900 text-white rounded-3xl shadow-2xl overflow-hidden">
+          <img src={imageUrl} alt={title} className="w-full h-48 object-cover" />
+          <div className="p-8">
+            <div className="flex justify-between opacity-70 text-sm">
+            {availability && (
+                <span className="flex items-center gap-2">
+                  <span className={`w-2 h-2 ${availability.color} rounded-full`}></span>
+                  {availability.text}
+                </span>
+              )}
+              <span className="capitalize">{cardType}</span>
+            </div>
+            <div className="mt-6">
+              <h2 className="text-2xl font-bold text-orange-500">{title}</h2>
+              <p className="text-neutral-300 mt-2">{description}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </DialogContent>
+    </Dialog>
+  );
 }

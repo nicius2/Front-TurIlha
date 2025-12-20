@@ -15,10 +15,12 @@ import { createNewRegister } from "@/api/app/userNewRegister";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
+import { useMutation } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 
 const formSchema = z
   .object({
-    nome: z.string().min(2, "O nome deve ter no mínimo 2 caracteres"),
+    name: z.string().min(2, "O nome deve ter no mínimo 2 caracteres"),
     email: z.string().email("Email inválido"),
     password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
     confirmPassword: z
@@ -39,20 +41,40 @@ export function SignUp() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
 
-  function handleSignUp(data: FormData) {
-    createNewRegister(data).then(() => {
+
+  const { mutate: createNewRegisterFn, isPending } = useMutation({
+    mutationFn: createNewRegister,
+    onSuccess: (_, variables) => {
       toast.success("Conta criada com sucesso!");
+      localStorage.setItem("registered_email", variables.email);
       setTimeout(() => {
-        navigate("/login");
+        navigate("/auth/login");
       }, 2000);
+    },
+    onError: (error) => {
+        if (error instanceof AxiosError && error.response?.status === 409) {
+            setError("email", { message: error.response.data.message });
+        } else {
+            toast.error("Erro ao criar conta, tente novamente!");
+        }
+    },
+  });
+
+  function handleSignUp(data: FormData) {
+    console.log("Submitting data:", data);
+    createNewRegisterFn({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      confirmPassword: data.confirmPassword,
     });
   }
-
   return (
     <>
       <Helmet title="Sign Up" />
@@ -73,24 +95,24 @@ export function SignUp() {
           >
             <div className="relative">
               <Label
-                htmlFor="nome"
+                htmlFor="name"
                 className="block text-sm font-medium text-gray-700"
               >
                 Nome
               </Label>
               <div className="relative mt-1">
                 <Input
-                  id="nome"
-                  {...register("nome")}
+                  id="name"
+                  {...register("name")}
                   type="text"
                   placeholder="Nome"
                   className="w-full h-12 px-4 py-3 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500"
                 />
                 <User className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               </div>
-              {errors.nome && (
+              {errors.name && (
                 <p className="text-sm text-red-500 mt-1">
-                  {errors.nome.message}
+                  {errors.name.message}
                 </p>
               )}
             </div>

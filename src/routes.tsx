@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { HomePage } from "./pages/app/homePage/home-page";
 import { Paisagens } from "./pages/app/paisagens";
-import { Atividades } from "./pages/app/atividades";
+import { Restaurantes } from "./pages/app/restautantes";
 import { Eventos } from "./pages/app/eventos";
 import { NotFound } from "./pages/NotFound";
 import { AuthSignLayout } from "./_layout/AuthSignLayout";
@@ -24,8 +24,8 @@ export const route = createBrowserRouter([
         element: <Paisagens />
       },
       {
-        path: "atividades",
-        element: <Atividades />
+        path: "restaurantes",
+        element: <Restaurantes />
       },
       {
         path: "eventos",

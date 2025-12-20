@@ -1,47 +1,53 @@
 import carIcon from "@/assets/car.svg";
-import imgCard from "@/assets/image-card.svg";
-import { ArrowRight } from "lucide-react";
+import { CardDialog } from "./card-dialog";
+import type { CardType } from "../context/TurismContext";
+import { useContext } from "react";
+import { AuthContext } from "@/context/AuthContext";
+import { toast } from "sonner";
+import { Button } from "./ui/button";
 
-type CardType = "paisagens" | "atividades" | "eventos";
 
 export interface CardProps {
   type: CardType;
-  title: string; 
-  distance: string; 
-  imageUrl?: string; 
+  title: string;
+  distance: string;
+  description: string
+  imageUrl?: string;
 }
 
-export function Card({ title, distance, imageUrl }: CardProps) {
+export function Card({ title, distance, imageUrl, description, type }: CardProps) {
+  const { isAuthenticated } = useContext(AuthContext);
+
   return (
-    <div className="flex flex-col w-full max-w-[200px] bg-gray-100 rounded-3xl shadow-lg overflow-hidden">
-      {/* Imagem do Card */}
+    <div className="flex flex-col h-[350px] w-full max-w-[200px] bg-gray-100 rounded-3xl shadow-lg overflow-hidden">
       <div className="relative">
         <img
-          src={imageUrl || imgCard} // Usa a imagem passada ou uma padrão
+          src={imageUrl}
           alt={`Imagem de ${title}`}
-          className="w-full h-[200px] object-cover"
+          className="w-full h-[150px] object-cover"
         />
       </div>
 
       {/* Conteúdo do Card */}
-      <div className="p-4">
-        <h2 className="text-xl font-bold text-gray-800">{title}</h2>
-        <span className="text-sm font-semibold text-gray-600 bg-green-200 px-2 border-1 rounded-2xl w-fit border-green-400  flex items-center mt-2">
-          {distance}
-          <img
-            src={carIcon}
-            alt="Ícone de carro"
-            className="w-6 h-6 ml-2"
-          />
-        </span>
-        <button
-          className="mt-4 flex items-center justify-center w-full py-2 text-sm font-medium text-white bg-orange-500 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
-        >
-          Conhecer
-          <span className="ml-2">
-            <ArrowRight size={24} />  
+      <div className="flex flex-1 flex-col p-4">
+        <div className="flex-grow">
+          <h2 className="text-xl font-bold text-gray-800">{title}</h2>
+        </div>
+
+        <a href={distance}>
+          <span className="mt-2 flex w-fit items-center mb-4 rounded-2xl border-1 border-green-400 bg-green-200 px-2 text-xs font-semibold text-gray-600">
+            Rota
+            <img src={carIcon} alt="Ícone de carro" className="ml-2 h-6 w-6" />
           </span>
-        </button>
+        </a>
+
+        {isAuthenticated ? (
+          <CardDialog title={title} description={description} imageUrl={imageUrl} cardType={type} />
+        ) : (
+          <Button onClick={() => toast.info("Faça login para ver mais detalhes")}>
+            Ver mais
+          </Button>
+        )}
       </div>
     </div>
   );
