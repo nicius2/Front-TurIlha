@@ -16,6 +16,7 @@ import { useMutation } from "@tanstack/react-query";
 import { loginNewSession } from "@/api/auth/loginUser";
 import { toast, Toaster } from "sonner";
 import { AuthContext } from "@/context/AuthContext";
+import { GoogleLoginButton } from "@/components/googleLoginButton";
 
 const formSchema = z.object({
   email: z.string().email("Email inválido"),
@@ -110,7 +111,7 @@ export function SignIn() {
                     {errors.email.message}
                   </span>
                 )}
-                <Mail className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Mail className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5" />
               </div>
             </div>
 
@@ -139,7 +140,7 @@ export function SignIn() {
                   onClick={() => setEyesopen(!eyesopen)}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 focus:outline-none z-10"
                 >
-                  {eyesopen ? <Eye className="text-amber-500" /> : <EyeOff />}
+                  {eyesopen ? <Eye className="text-amber-500 w-5" /> : <EyeOff className="w-5"/>}
                 </button>
               </div>
 
@@ -173,13 +174,7 @@ export function SignIn() {
           </span>
 
           <div className="flex justify-center mt-4">
-            <button
-              type="button"
-              aria-label="Autenticar com Google"
-              className="flex items-center justify-center w-12 h-12 bg-white border rounded-full shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 "
-            >
-              <img src={iconGoogle} alt="Google Logo" className="w-6 h-6" />
-            </button>
+            <GoogleLoginButton />
           </div>
         </div>
       </div>

@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import { GoogleLoginButton } from "@/components/googleLoginButton";
 
 const formSchema = z
   .object({
@@ -108,7 +109,7 @@ export function SignUp() {
                   placeholder="Nome"
                   className="w-full h-12 px-4 py-3 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500"
                 />
-                <User className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <User className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5" />
               </div>
               {errors.name && (
                 <p className="text-sm text-red-500 mt-1">
@@ -132,7 +133,7 @@ export function SignUp() {
                   placeholder="Email"
                   className="w-full h-12 px-4 py-3 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500"
                 />
-                <Mail className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Mail className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5" />
               </div>
               {errors.email && (
                 <p className="text-sm text-red-500 mt-1">
@@ -161,7 +162,7 @@ export function SignUp() {
                   onClick={() => setEyesopen(!eyesopen)}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 focus:outline-none z-10"
                 >
-                  {eyesopen ? <Eye className="text-amber-500" /> : <EyeOff />}
+                  {eyesopen ? <Eye className="text-amber-500 w-5" /> : <EyeOff className="w-5"/>}
                 </button>
               </div>
               {errors.password && (
@@ -203,12 +204,7 @@ export function SignUp() {
             </Button>
           </form>
           <div className="flex justify-center mt-4">
-            <button
-              type="button"
-              className="flex items-center justify-center w-12 h-12 bg-white border rounded-full shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 "
-            >
-              <img src={iconGoogle} alt="Google Logo" className="w-6 h-6" />
-            </button>
+            <GoogleLoginButton />
           </div>
         </div>
       </div>
