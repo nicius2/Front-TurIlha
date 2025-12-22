@@ -11,7 +11,7 @@ import { useState } from "react";
 import iconGoogle from "@/assets/google.png";
 
 import { Button } from "@/components/ui/button";
-import { createNewRegister } from "@/api/app/userNewRegister";
+import { createNewRegister } from "@/api/auth/userNewRegister";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";

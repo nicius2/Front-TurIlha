@@ -8,6 +8,7 @@ import { AuthSignLayout } from "./_layout/AuthSignLayout";
 import { SignIn } from "@/pages/auth/signIn"
 import { SignUp } from "@/pages/auth/signUp"
 import { ResetPassword } from "./pages/auth/resetPassword";
+import { UpdatePassword } from "./pages/auth/updatePassword";
 
 
 export const route = createBrowserRouter([
@@ -40,6 +41,7 @@ export const route = createBrowserRouter([
       { path: "login", element: <SignIn /> },
       { path: "register", element: <SignUp /> },
       { path: "reset-password", element: <ResetPassword /> },
+      { path: "update-password", element: <UpdatePassword /> },
     ]
   },
   {

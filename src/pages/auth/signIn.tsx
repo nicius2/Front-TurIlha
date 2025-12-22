@@ -13,7 +13,7 @@ import iconGoogle from "@/assets/google.png";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import { loginNewSession } from "@/api/app/loginUser";
+import { loginNewSession } from "@/api/auth/loginUser";
 import { toast, Toaster } from "sonner";
 import { AuthContext } from "@/context/AuthContext";
 
