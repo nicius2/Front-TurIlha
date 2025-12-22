@@ -1,12 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import { HomePage } from "./pages/app/homePage/home-page";
 import { Paisagens } from "./pages/app/paisagens";
-import { Atividades } from "./pages/app/atividades";
+import { Restaurantes } from "./pages/app/restautantes";
 import { Eventos } from "./pages/app/eventos";
 import { NotFound } from "./pages/NotFound";
 import { AuthSignLayout } from "./_layout/AuthSignLayout";
 import { SignIn } from "@/pages/auth/signIn"
 import { SignUp } from "@/pages/auth/signUp"
+import { ResetPassword } from "./pages/auth/resetPassword";
+import { UpdatePassword } from "./pages/auth/updatePassword";
 
 
 export const route = createBrowserRouter([
@@ -19,31 +21,27 @@ export const route = createBrowserRouter([
         element: <Paisagens />
       },
       {
-        path: "/paisagens",
+        path: "paisagens",
         element: <Paisagens />
       },
       {
-        path: "/atividades",
-        element: <Atividades />
+        path: "restaurantes",
+        element: <Restaurantes />
       },
       {
-        path: "/eventos",
+        path: "eventos",
         element: <Eventos />
       },
     ]
   },
   {
-    path: "/",
+    path: "/auth",
     element: <AuthSignLayout />,
     children: [
-      {
-        path: "login", 
-        element: <SignIn />
-      },
-      {
-        path: "cadastrar", 
-        element: <SignUp />
-      },
+      { path: "login", element: <SignIn /> },
+      { path: "register", element: <SignUp /> },
+      { path: "reset-password", element: <ResetPassword /> },
+      { path: "update-password", element: <UpdatePassword /> },
     ]
   },
   {

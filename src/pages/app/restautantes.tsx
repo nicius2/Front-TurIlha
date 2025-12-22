@@ -4,12 +4,12 @@ import { CardList } from "@/components/cardList";
 import { type CardProps } from "@/components/card";
 import { Dialog } from "@/components/ui/dialog";
 import { useQuery } from "@tanstack/react-query";
-import { getListCardEventos } from "@/api/app/getCardEventos";
+import { getListCardRestaurantes } from "@/api/app/getCardRestaurantes";
 
-export function Eventos() {
+export function Restaurantes() {
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['eventos'],
-    queryFn: getListCardEventos
+    queryKey: ['restaurantes'],
+    queryFn: getListCardRestaurantes
   });
 
   const cards = useMemo(() => {
@@ -19,7 +19,7 @@ export function Eventos() {
 
     return data.map((item) => ({
       ...item,
-      type: 'eventos',
+      type: 'restaurantes',
       distance: item.mapsUrl,
     }));
   }, [data]);
@@ -27,7 +27,7 @@ export function Eventos() {
   if (isLoading) {
     return (
       <>
-        <Helmet title="Eventos" />
+        <Helmet title="Restaurantes" />
         <CardList isLoading={true} cards={[]} />
       </>
     );
@@ -40,15 +40,15 @@ export function Eventos() {
   if (!cards.length) {
     return (
       <>
-        <Helmet title="Eventos" />
-        <div className="p-4">Nenhum evento encontrado.</div>
+        <Helmet title="Restaurantes" />
+        <div className="p-4">Nenhum restaurante encontrado.</div>
       </>
     );
   }
 
   return (
     <>
-      <Helmet title="Eventos" />
+      <Helmet title="Restaurantes" />
       <Dialog>
         <CardList isLoading={false} cards={cards as CardProps[]} />
       </Dialog>

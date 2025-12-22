@@ -11,7 +11,7 @@ function ButtonSkeleton() {
 
 const listPages = [
     { id: 2, name: "Paisagens", path: "/paisagens" },
-    { id: 3, name: "Atividades", path: "/atividades" },
+    { id: 3, name: "Restaurantes", path: "/restaurantes" },
     { id: 4, name: "Eventos", path: "/eventos" },
 ];
 

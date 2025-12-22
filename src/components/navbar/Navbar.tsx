@@ -31,7 +31,7 @@ export const Navbar = memo(function Navbar() {
                 </div>
 
                 <Button asChild className="hidden md:flex hover:bg-primary/80 font-semibold">
-                <Link to="/login">
+                <Link to="/auth/login">
                     Fazer login
                 </Link>
                 </Button>
