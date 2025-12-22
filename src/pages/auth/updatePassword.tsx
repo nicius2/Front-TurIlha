@@ -4,18 +4,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import { Label } from "@radix-ui/react-label";
-import iconMao from "@/assets/icon-mao.svg";
-import { Eye, Mail, EyeOff } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 
-import iconGoogle from "@/assets/google.png";
-
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import { loginNewSession } from "@/api/auth/loginUser";
 import { toast, Toaster } from "sonner";
-import { AuthContext } from "@/context/AuthContext";
+import { updatePassword } from "@/api/auth/updatePassword";
 
 const formSchema = z.object({
   password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
@@ -29,6 +24,8 @@ type FormData = z.infer<typeof formSchema>;
 
 export function UpdatePassword() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams()
+  const token = searchParams.get('token')
 
   const {
     register,
@@ -38,7 +35,24 @@ export function UpdatePassword() {
     resolver: zodResolver(formSchema),
   });
 
+  const { mutate: updatePasswordFn } = useMutation({
+    mutationFn: updatePassword,
+    onSuccess: () => {
+      toast.success("Senha atualizada com sucesso!");
+      navigate("/auth/login");
+    },
+    onError: () => {
+      toast.error("Erro ao atualizar senha, tente novamente!");
+    }
+  })
 
+  async function handlePasswordUpdate(data: FormData) {
+    if (!token) {
+      toast.error("Token de redefinição de senha não encontrado. Por favor, solicite um novo link.");
+      return;
+    }
+    updatePasswordFn({...data, token})
+  }
 
   return (
     <>
@@ -52,7 +66,7 @@ export function UpdatePassword() {
 
         <div className="space-y-6">
           <form
-            // onSubmit={handleSubmit(handleLogin)}
+            onSubmit={handleSubmit(handlePasswordUpdate)}
             className="space-y-6 w-[300px]"
           >
             <div className="relative">
