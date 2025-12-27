@@ -1,7 +1,3 @@
-// Remova ou comente esta linha se não estiver usando:
-// import { Card } from "./card";
-// import { CardSkeleton } from "@/components/cardSkeleton";
-
 
 
 export function CardSkeleton() {
