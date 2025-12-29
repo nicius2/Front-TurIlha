@@ -66,7 +66,6 @@ export function SignIn() {
   });
 
   function handleLogin(data: FormData) {
-    console.log("Submitting data:", data);
     login({
       email: data.email,
       password: data.password,

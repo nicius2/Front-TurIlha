@@ -68,7 +68,6 @@ export function SignUp() {
   });
 
   function handleSignUp(data: FormData) {
-    console.log("Submitting data:", data);
     createNewRegisterFn({
       name: data.name,
       email: data.email,
