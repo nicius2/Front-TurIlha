@@ -17,10 +17,14 @@ O TurIlha conecta viajantes aos destinos mais incríveis da ilha com praticidade
 #### Front-end
 
 - React, TailwindCSS, Shadcn/UI, Radix UI, React Hook Form, Zod (validação), React Query.
+`front hospedado na vercel`
 
 #### Back-end
 
-Node.js, Express, TypeScript, JWT (autenticação), Docker / Docker Compose, PostgreSQL, Prisma ORM, bcrypt, Jest (testes automatizados).
+Node.js, Express, TypeScript, JWT (autenticação), Docker / Docker Compose, PostgreSQL, Prisma ORM, bcrypt, Jest (testes automatizados, teste de integração e E2E ).
+repo do back: https://github.com/nicius2/Back-TurIlha
+
+`back hospedado no railway`
 
 ## 📥 Como clonar e rodar o projeto
 #### 🔧 1. Clone o repositório
