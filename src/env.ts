@@ -1,4 +1,5 @@
 import { z }from 'zod'
+import "dotenv"
 
 export const envSchema = z.object({
   MODE: z.enum(['development','production', 'test']),
@@ -15,4 +16,4 @@ export const envSchema = z.object({
 });
 
 
-export const env = envSchema.parse(import.meta.env)
+export const env = envSchema.parse(process.env)

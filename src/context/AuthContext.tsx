@@ -14,15 +14,14 @@ export const AuthContext = createContext<AuthContextProps>({
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem("auth_token");
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    const token = localStorage.getItem('auth_token')
     if (token) {
-      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      setIsAuthenticated(true);
+      api.defaults.headers.common.Authorization = `Bearer ${token}`
+      return true
     }
-  }, []);
+    return false
+  })
 
   const login = (token: string) => {
     localStorage.setItem("auth_token", token);
