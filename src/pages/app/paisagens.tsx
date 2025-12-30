@@ -30,7 +30,14 @@ export const Paisagens = React.memo(() => {
     );
   }
 
-  {isError && <div>Erro: {error.message}</div>}
+  if (isError) {
+    return (
+      <>
+        <Helmet title="Paisagens" />
+        <div className="p-4">Erro ao carregar as paisagens: {error.message}</div>
+      </>
+    )
+  }
 
   if (!cards.length) {
     return (

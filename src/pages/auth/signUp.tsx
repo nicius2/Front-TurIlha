@@ -8,8 +8,6 @@ import iconMao from "@/assets/icon-mao.svg";
 import { Eye, Mail, EyeOff, User } from "lucide-react";
 import { useState } from "react";
 
-import iconGoogle from "@/assets/google.png";
-
 import { Button } from "@/components/ui/button";
 import { createNewRegister } from "@/api/auth/userNewRegister";
 import { useNavigate } from "react-router-dom";
@@ -49,7 +47,7 @@ export function SignUp() {
   });
 
 
-  const { mutate: createNewRegisterFn, isPending } = useMutation({
+  const { mutate: createNewRegisterFn } = useMutation({
     mutationFn: createNewRegister,
     onSuccess: (_, variables) => {
       toast.success("Conta criada com sucesso!");

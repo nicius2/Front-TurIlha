@@ -4,10 +4,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import { Label } from "@radix-ui/react-label";
-import { useContext, useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { toast, Toaster } from "sonner";
 import { updatePassword } from "@/api/auth/updatePassword";

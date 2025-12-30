@@ -8,8 +8,6 @@ import iconMao from "@/assets/icon-mao.svg";
 import { Eye, Mail, EyeOff } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 
-import iconGoogle from "@/assets/google.png";
-
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
